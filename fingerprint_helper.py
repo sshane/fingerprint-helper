@@ -70,8 +70,8 @@ def merge_fingerprint(model_fp, unsupported_fp):  # current, supported fingerpri
     if new_keys != 0:
         print(str(new_keys) + " new key/value pairs added to fingerprint!\n")
     if changed_keys != 0:
-        print(str(changed_keys) + " changed key/value pairs added to fingerprint!\n")
-    print(model_fp)  # return new fingerprint merged with supplied unsupported fp
+        print(str(changed_keys) + " changed key/value pairs!\n")
+    return model_fp  # return new fingerprint merged with supplied unsupported fp
             
 
                 
