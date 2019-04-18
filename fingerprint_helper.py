@@ -25,11 +25,11 @@ def find_matches(unsupported_fp=""):
                             match_dict[model]["matches"] += 1
     
     match_sorted = OrderedDict(sorted(match_dict.items(), key=lambda x:x[1]['matches'], reverse=True))
-    top_matches = [key for key in match_sorted.keys()][:3]
+    top_matches = [key for key in match_sorted.keys()][:5]
     for idx, top_match in enumerate(top_matches):
         print(str(idx + 1) + ". " + top_match)
         print("Exact matches: " + str(match_sorted[top_match]['matches']))
-        if idx != 2:
+        if idx != 4:
             print()
     choice = int(input("Please enter the number next to the model you'd like to merge with: "))
     selected_model = match_sorted[top_matches[choice - 1]]
@@ -53,7 +53,7 @@ def merge_fingerprint(model_fp, unsupported_fp):  # current, supported fingerpri
         for mismatch in mismatches:
             print("Key: " + str(mismatch))
             print("Your unsupported fingerprint value: " + str(unsupported_fp[mismatch]))
-            print("Model fingerprint value: " + str(model_fp[mismatch]))
+            print("Selected model fingerprint value: " + str(model_fp[mismatch]))
             new_values[mismatch] = int(input("Please type value to use with merge: "))
     
     new_keys = 0
