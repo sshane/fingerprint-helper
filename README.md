@@ -1,6 +1,6 @@
 # fingerprint-helper
 
-fingerprint-helper is a useful tool for openpilot designed to help you find similar already supported fingerprints, and merge your unsupported fingerprint.
+fingerprint-helper is a useful tool for [openpilot](https://github.com/commaai/openpilot) designed to help you find similar already supported fingerprints, and merge your unsupported fingerprint.
 
 Included is easy formatting from a Sentry error, where an `L` is following every value. It's automatically filtered out and converted to a dictionary for you.
 
