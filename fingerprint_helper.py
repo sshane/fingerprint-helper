@@ -45,7 +45,7 @@ def find_matches(unsupported_fp=""):
             print(str(idx + 1) + ". " + top_match)
         else:
             print(str(idx + 1) + ". " + top_match[:-2] + " (fingerprint #" + str(int(top_match[-1:]) + 1) + ")")
-        print("Exact matches: " + str(match_sorted[top_match]['matches']))
+        print(str(match_sorted[top_match]['matches']) + " exact key/value matches")
         if match_dict[top_match]['mismatches'] != 0:
             print(str(match_dict[top_match]['mismatches']) + " mismatches")
         else:
@@ -60,7 +60,6 @@ def find_matches(unsupported_fp=""):
     choice = int(input("Please enter the number next to the model you'd like to merge with: "))
     selected_model = match_dict[top_matches[choice - 1]]['fingerprint']
     #if selected_model["fingerprint"] != "multi":
-    print()
     merge_fingerprint(selected_model, unsupported_fp)
     #else:
         #print("\nThe vehicle you selected has multiple fingerprints with code comments explaining which are which.\nPlease select the car from fingerprints.py and use merge_fingerprint() manually.")
@@ -74,6 +73,7 @@ def merge_fingerprint(model_fp, unsupported_fp):  # current, supported fingerpri
                 mismatches.append(key)
     
     if len(mismatches) != 0:
+        print()
         mismatch_text = "mismatch" if len(mismatches) == 1 else "mismatches"
         print(str(len(mismatches)) + " value " + mismatch_text + " to fix!\n")
         new_values = {}
@@ -93,13 +93,12 @@ def merge_fingerprint(model_fp, unsupported_fp):  # current, supported fingerpri
             changed_keys += 1
             model_fp[key] = new_values[key]
     if new_keys == 0 and changed_keys == 0:
-        print("Nothing to add/change.")
-    else:
-        print("\nSucessfully merged!\n")
+        print("\nNothing to add/change.")
     if new_keys != 0:
-        print(str(new_keys) + " new key/value pairs added to fingerprint!\n")
+        print("\n" + str(new_keys) + " new key/value pairs added to fingerprint!")
     if changed_keys != 0:
-        print(str(changed_keys) + " changed key/value pairs!\n")
+        print("\n" + str(changed_keys) + " changed key/value pairs!")
+    print()
     print(model_fp)  # return new fingerprint merged with supplied unsupported fp
 
                 
@@ -107,4 +106,4 @@ def merge_fingerprint(model_fp, unsupported_fp):  # current, supported fingerpri
 #{68: 8, 168: 8, 257: 5, 258: 8, 264: 8, 268: 8, 270: 8, 274: 2, 280: 8, 284: 8, 288: 7, 290: 6, 291: 8, 292: 8, 294: 8, 300: 8, 308: 8, 320: 8, 324: 8, 331: 8, 332: 8, 344: 8, 368: 8, 376: 3, 384: 8, 388: 4, 448: 6, 456: 4, 464: 8, 469: 8, 480: 8, 500: 8, 501: 8, 512: 8, 514: 8, 520: 8, 528: 8, 532: 8, 542: 8, 544: 8, 557: 8, 559: 8, 560: 4, 564: 8, 571: 3, 579: 8, 584: 8, 608: 8, 624: 8, 625: 8, 632: 8, 639: 8, 653: 8, 654: 8, 655: 8, 658: 8, 660: 8, 669: 3, 671: 8, 672: 8, 680: 8, 701: 8, 704: 8, 705: 8, 706: 8, 709: 8, 710: 8, 719: 8, 720: 6, 729: 5, 736: 8, 737: 8, 746: 5, 760: 8, 764: 8, 766: 8, 770: 8, 773: 8, 779: 8, 782: 8, 784: 8, 792: 8, 799: 8, 800: 8, 804: 8, 808: 8, 816: 8, 817: 8, 820: 8, 825: 2, 826: 8, 832: 8, 838: 2, 848: 8, 853: 8, 856: 4, 860: 6, 863: 8, 878: 8, 882: 8, 897: 8, 908: 8, 924: 8, 926: 3, 929: 8, 937: 8, 938: 8, 939: 8, 940: 8, 941: 8, 942: 8, 943: 8, 947: 8, 948: 8, 958: 8, 959: 8, 969: 4, 974: 5, 979: 8, 980: 8, 981: 8, 982: 8, 983: 8, 984: 8, 992: 8, 993: 7, 995: 8, 996: 8, 1000: 8, 1001: 8, 1002: 8, 1003: 8, 1008: 8, 1009: 8, 1010: 8, 1011: 8, 1012: 8, 1013: 8, 1014: 8, 1015: 8, 1024: 8, 1025: 8, 1026: 8, 1031: 8, 1033: 8, 1050: 8, 1059: 8, 1082: 8, 1083: 8, 1098: 8, 1100: 8})
 
 
-find_matches("{1552L: 8, 1553L: 8, 1554L: 8, 1043L: 8, 1561L: 8, 1568L: 8, 1569L: 8, 1570L: 8, 1059L: 1, 36L: 8, 37L: 8, 550L: 8, 552L: 4, 560L: 7, 1589L: 8, 1592L: 8, 1593L: 8, 1595L: 8, 1599L: 8, 581L: 5, 1112L: 8, 1114L: 8, 608L: 8, 610L: 5, 1041L: 8, 1656L: 8, 643L: 7, 1176L: 8, 1177L: 8, 1178L: 8, 1179L: 8, 1180L: 8, 1181L: 8, 1184L: 8, 1185L: 8, 1186L: 8, 1189L: 8, 1190L: 8, 1191L: 8, 1192L: 8, 170L: 8, 1196L: 8, 1197L: 8, 1198L: 8, 1199L: 8, 180L: 8, 1206L: 8, 1212L: 8, 1728L: 8, 1056L: 8, 713L: 8, 1232L: 8, 1745L: 8, 1571L: 8, 1237L: 8, 1572L: 8, 1263L: 8, 979L: 2, 800L: 8, 1584L: 8, 296L: 8, 835L: 8, 836L: 8, 849L: 4, 869L: 7, 870L: 7, 896L: 8, 905L: 8, 911L: 8, 916L: 3, 918L: 7, 921L: 8, 933L: 8, 426L: 6, 944L: 8, 945L: 8, 1779L: 8, 950L: 8, 951L: 8, 953L: 3, 955L: 8, 956L: 8, 452L: 8, 466L: 8, 467L: 8, 1014L: 8, 1017L: 8, 1020L: 8}")
+#find_matches("{512L: 8, 257L: 5, 258L: 8, 388L: 4, 773L: 8, 1031L: 8, 264L: 8, 268L: 8, 514L: 8, 792L: 8, 274L: 2, 660L: 8, 280L: 8, 284L: 8, 669L: 3, 926L: 3, 671L: 8, 544L: 8, 376L: 3, 290L: 6, 292L: 8, 294L: 8, 817L: 8, 680L: 8, 924L: 8, 480L: 8, 300L: 8, 559L: 8, 520L: 8, 308L: 8, 542L: 8, 55L: 8, 564L: 8, 571L: 3, 752L: 2, 320L: 8, 416L: 7, 324L: 8, 464L: 8, 838L: 2, 672L: 8, 331L: 8, 332L: 8, 288L: 7, 720L: 6, 632L: 8, 469L: 8, 344L: 8, 384L: 8, 800L: 8, 863L: 8, 736L: 8, 993L: 7, 996L: 8, 448L: 6, 746L: 5, 368L: 8, 625L: 8, 500L: 8, 501L: 8, 937L: 8, 760L: 8, 532L: 8, 992L: 8, 764L: 8, 766L: 8}")
