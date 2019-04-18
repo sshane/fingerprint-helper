@@ -6,7 +6,7 @@ makes = [fingerprints.TOYOTA_FINGERPRINTS, fingerprints.GM_FINGERPRINTS, fingerp
 
 def find_matches(unsupported_fp=""):
     if unsupported_fp == "":
-        fp = input("Enter fingerprint: ")
+        unsupported_fp = input("Enter fingerprint: ")
     unsupported_fp = unsupported_fp.replace("L:", ":")
     unsupported_fp = ast.literal_eval(unsupported_fp)
     match_dict = {}
