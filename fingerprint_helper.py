@@ -65,7 +65,15 @@ def find_matches(unsupported_fp=""):
             print(str(idx + 1) + ". " + top_match[:-2] + " (fingerprint #" + str(int(top_match[-1:]) + 1) + ")")
         print("  " + str(match_sorted[top_match]['matches']) + " exact key/value matches")
         if match_dict[top_match]['mismatches'] != 0:
+            tmp_mismatches="{"
             print("  " + str(match_dict[top_match]['mismatches']) + " mismatches")
+            for i in unsupported_fp:
+                if i in match_dict[top_match]['fingerprint']:
+                    if unsupported_fp[i] != match_dict[top_match]['fingerprint'][i]:
+                        tmp_mismatches+=(str(i)+": Unsupported: "+ str(unsupported_fp[i])+", this: "+str(match_dict[top_match]['fingerprint'][i])+"; ")
+            tmp_mismatches = tmp_mismatches[:-2]
+            tmp_mismatches+="}"
+            print("  Mismatches: "+str(tmp_mismatches))
         else:
             print("  No mismatches")
         if abs(len(unsupported_fp) - len(match_dict[top_match]['fingerprint'])) != 0:
@@ -167,4 +175,4 @@ def merge_fingerprint(model_fp, unsupported_fp):  # current, supported fingerpri
 
 #merge_fingerprint({1:2, 3:4}, {1:2, 3:2, 5:7})
 
-#find_matches("{643L: 7, 742L: 8, 658L: 8, 836L: 8, 800L: 8, 1840L: 8, 36L: 8, 37L: 8, 550L: 8, 295L: 8, 296L: 8, 810L: 2, 814L: 8, 560L: 7, 562L: 6, 180L: 8, 824L: 2, 835L: 8, 452L: 8, 581L: 5, 713L: 8, 1227L: 8, 466L: 8, 467L: 8, 608L: 8, 610L: 8, 166L: 8, 614L: 8, 743L: 8, 1132L: 8, 971L: 7, 552L: 4, 1779L: 8, 170L: 8}")
+#find_matches("{643L: 7, 742L: 9, 658L: 8, 836L: 8, 800L: 8, 1840L: 8, 36L: 8, 37L: 8, 550L: 8, 295L: 8, 296L: 8, 810L: 2, 814L: 8, 560L: 7, 562L: 6, 180L: 8, 824L: 2, 835L: 8, 452L: 8, 581L: 5, 713L: 8, 1227L: 8, 466L: 8, 467L: 8, 608L: 8, 610L: 8, 166L: 8, 614L: 8, 743L: 8, 1132L: 8, 971L: 7, 552L: 4, 1779L: 8, 170L: 8}")
