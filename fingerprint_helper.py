@@ -45,17 +45,20 @@ def find_matches(unsupported_fp=""):
     match_sorted = OrderedDict(sorted(match_dict.items(), key=lambda x:x[1]['matches'], reverse=True))
     top_matches = [key for key in match_sorted.keys()][:5]
     
+    match = False
     for idx, top_match in enumerate(top_matches):
         if match_dict[top_match]['mismatches'] == 0 and len(unsupported_fp) < len(match_dict[top_match]['fingerprint']) and match_sorted[top_match]['matches'] == len(unsupported_fp):
             print("Exact fingerprint match!")
             print(top_match)
-            print(str(abs(len(unsupported_fp) - len(match_dict[top_match]['fingerprint']))) + " less key/value pairs")
-            return
+            print(str(abs(len(unsupported_fp) - len(match_dict[top_match]['fingerprint']))) + " less key/value pairs\n")
+            match = True
         if match_dict[top_match]['matches'] == len(match_dict[top_match]['fingerprint']) and len(unsupported_fp) > match_dict[top_match]['matches']:
             print("Match found!")
             print(top_match)
-            print(str(abs(len(unsupported_fp) - len(match_dict[top_match]['fingerprint']))) + " new key/value pairs")
-            return
+            print(str(abs(len(unsupported_fp) - len(match_dict[top_match]['fingerprint']))) + " new key/value pairs\n")
+            match = True
+    if match:
+        return
     
     for idx, top_match in enumerate(top_matches):
         if top_match[-2:-1] != "_":
