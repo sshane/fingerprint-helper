@@ -3,9 +3,8 @@ import fingerprints
 from collections import OrderedDict
 import copy
 
-makes = [fingerprints.TOYOTA_FINGERPRINTS, fingerprints.GM_FINGERPRINTS, fingerprints.FORD_FINGERPRINTS, fingerprints.HONDA_FINGERPRINTS, fingerprints.CHRYSLER_FINGERPRINTS, fingerprints.HYUNDAI_FINGERPRINTS]
-
 def find_matches(unsupported_fp=""):
+    makes = [fingerprints.TOYOTA_FINGERPRINTS, fingerprints.GM_FINGERPRINTS, fingerprints.FORD_FINGERPRINTS, fingerprints.HONDA_FINGERPRINTS, fingerprints.CHRYSLER_FINGERPRINTS, fingerprints.HYUNDAI_FINGERPRINTS]
     if unsupported_fp == "":
         unsupported_fp = input("Enter fingerprint: ")
     if type(unsupported_fp) == str:  # formatting for from sentry
@@ -46,17 +45,20 @@ def find_matches(unsupported_fp=""):
     match_sorted = OrderedDict(sorted(match_dict.items(), key=lambda x:x[1]['matches'], reverse=True))
     top_matches = [key for key in match_sorted.keys()][:5]
     
+    match = False
     for idx, top_match in enumerate(top_matches):
         if match_dict[top_match]['mismatches'] == 0 and len(unsupported_fp) < len(match_dict[top_match]['fingerprint']) and match_sorted[top_match]['matches'] == len(unsupported_fp):
             print("Exact fingerprint match!")
             print(top_match)
-            print(str(abs(len(unsupported_fp) - len(match_dict[top_match]['fingerprint']))) + " less key/value pairs")
-            return
+            print(str(abs(len(unsupported_fp) - len(match_dict[top_match]['fingerprint']))) + " less key/value pairs\n")
+            match = True
         if match_dict[top_match]['matches'] == len(match_dict[top_match]['fingerprint']) and len(unsupported_fp) > match_dict[top_match]['matches']:
             print("Match found!")
             print(top_match)
-            print(str(abs(len(unsupported_fp) - len(match_dict[top_match]['fingerprint']))) + " new key/value pairs")
-            return
+            print(str(abs(len(unsupported_fp) - len(match_dict[top_match]['fingerprint']))) + " new key/value pairs\n")
+            match = True
+    if match:
+        return
     
     for idx, top_match in enumerate(top_matches):
         if top_match[-2:-1] != "_":
@@ -65,7 +67,15 @@ def find_matches(unsupported_fp=""):
             print(str(idx + 1) + ". " + top_match[:-2] + " (fingerprint #" + str(int(top_match[-1:]) + 1) + ")")
         print("  " + str(match_sorted[top_match]['matches']) + " exact key/value matches")
         if match_dict[top_match]['mismatches'] != 0:
+            tmp_mismatches="{"
             print("  " + str(match_dict[top_match]['mismatches']) + " mismatches")
+            for i in unsupported_fp:
+                if i in match_dict[top_match]['fingerprint']:
+                    if unsupported_fp[i] != match_dict[top_match]['fingerprint'][i]:
+                        tmp_mismatches+=(str(i)+": Unsupported: "+ str(unsupported_fp[i])+", this: "+str(match_dict[top_match]['fingerprint'][i])+"; ")
+            tmp_mismatches = tmp_mismatches[:-2]
+            tmp_mismatches+="}"
+            print("  Mismatches: "+str(tmp_mismatches))
         else:
             print("  No mismatches")
         if abs(len(unsupported_fp) - len(match_dict[top_match]['fingerprint'])) != 0:
