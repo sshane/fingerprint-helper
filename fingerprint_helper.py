@@ -4,7 +4,7 @@ from collections import OrderedDict
 import copy
 
 def find_matches(unsupported_fp=""):
-    makes = [fingerprints.TOYOTA_FINGERPRINTS, fingerprints.GM_FINGERPRINTS, fingerprints.FORD_FINGERPRINTS, fingerprints.HONDA_FINGERPRINTS, fingerprints.CHRYSLER_FINGERPRINTS, fingerprints.HYUNDAI_FINGERPRINTS]
+    makes = [fingerprints.TOYOTA_FINGERPRINTS, fingerprints.GM_FINGERPRINTS, fingerprints.FORD_FINGERPRINTS, fingerprints.HONDA_FINGERPRINTS, fingerprints.CHRYSLER_FINGERPRINTS, fingerprints.HYUNDAI_FINGERPRINTS, fingerprints.SUBARU_FINGERPRINTS]
     if unsupported_fp == "":
         unsupported_fp = input("Enter fingerprint: ")
     if type(unsupported_fp) == str:  # formatting for from sentry
