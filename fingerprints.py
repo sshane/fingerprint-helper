@@ -94,39 +94,6 @@ TOYOTA_FINGERPRINTS = {
   }],
 }
 
-STEER_THRESHOLD = 100
-
-DBC = {
-  CAR.RAV4H: dbc_dict('toyota_rav4_hybrid_2017_pt_generated', 'toyota_adas'),
-  CAR.RAV4: dbc_dict('toyota_rav4_2017_pt_generated', 'toyota_adas'),
-  CAR.PRIUS: dbc_dict('toyota_prius_2017_pt_generated', 'toyota_adas'),
-  CAR.COROLLA: dbc_dict('toyota_corolla_2017_pt_generated', 'toyota_adas'),
-  CAR.LEXUS_RXH: dbc_dict('lexus_rx_hybrid_2017_pt_generated', 'toyota_adas'),
-  CAR.CHR: dbc_dict('toyota_nodsu_pt_generated', 'toyota_adas'),
-  CAR.CHRH: dbc_dict('toyota_nodsu_hybrid_pt_generated', 'toyota_adas'),
-  CAR.CAMRY: dbc_dict('toyota_nodsu_pt_generated', 'toyota_adas'),
-  CAR.CAMRYH: dbc_dict('toyota_camry_hybrid_2018_pt_generated', 'toyota_adas'),
-  CAR.HIGHLANDER: dbc_dict('toyota_highlander_2017_pt_generated', 'toyota_adas'),
-  CAR.HIGHLANDERH: dbc_dict('toyota_highlander_hybrid_2018_pt_generated', 'toyota_adas'),
-  CAR.RAV4_TSS2: dbc_dict('toyota_nodsu_pt_generated', 'toyota_tss2_adas'),
-  CAR.COROLLA_TSS2: dbc_dict('toyota_nodsu_pt_generated', 'toyota_tss2_adas'),
-  CAR.LEXUS_ESH_TSS2: dbc_dict('toyota_nodsu_hybrid_pt_generated', 'toyota_tss2_adas'),
-  CAR.AVALON: dbc_dict('toyota_avalon_2017_pt_generated', 'toyota_adas'),
-  CAR.OLD_CAR: dbc_dict('toyota_corolla_2017_pt_generated', 'toyota_adas'),
-  CAR.LEXUS_RX: dbc_dict('lexus_rx_hybrid_2017_pt_generated', 'toyota_adas'),
-  CAR.LEXUS_ISH: dbc_dict('lexus_is_hybrid_2017_pt_generated', 'toyota_adas'),
-  CAR.SIENNA: dbc_dict('toyota_sienna_xle_2018_pt_generated', 'toyota_adas'),
-  CAR.LEXUS_IS: dbc_dict('lexus_is_2018_pt_generated', 'toyota_adas'),
-  CAR.RAV4H_TSS2: dbc_dict('toyota_nodsu_hybrid_pt_generated', 'toyota_tss2_adas'),
-}
-
-NO_DSU_CAR = [CAR.CHR, CAR.CHRH, CAR.CAMRY, CAR.CAMRYH, CAR.LEXUS_ESH_TSS2,CAR.RAV4_TSS2,CAR.COROLLA_TSS2, CAR.RAV4H_TSS2]
-TSS2_CAR = [CAR.RAV4_TSS2, CAR.COROLLA_TSS2, CAR.LEXUS_ESH_TSS2, CAR.RAV4H_TSS2]
-NO_STOP_TIMER_CAR = [CAR.RAV4H, CAR.HIGHLANDERH, CAR.HIGHLANDER, CAR.RAV4_TSS2, CAR.COROLLA_TSS2, CAR.LEXUS_ISH, CAR.LEXUS_ESH_TSS2, CAR.SIENNA, CAR.RAV4H_TSS2]  # no resume button press required
-
-  }],
-}
-
 class HYUNDAI_CAR:
   ELANTRA = "HYUNDAI ELANTRA LIMITED ULTIMATE 2017"
   GENESIS = "HYUNDAI GENESIS 2018"
