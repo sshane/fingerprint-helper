@@ -3,7 +3,7 @@ import fingerprints
 from collections import OrderedDict
 import copy
 
-def find_matches(unsupported_fp=""):
+def find_matches(unsupported_fp="", accept_matches=True):
     makes = [fingerprints.TOYOTA_FINGERPRINTS, fingerprints.GM_FINGERPRINTS, fingerprints.FORD_FINGERPRINTS, fingerprints.HONDA_FINGERPRINTS, fingerprints.CHRYSLER_FINGERPRINTS, fingerprints.HYUNDAI_FINGERPRINTS, fingerprints.SUBARU_FINGERPRINTS]
     if unsupported_fp == "":
         unsupported_fp = input("Enter fingerprint: ")
@@ -58,7 +58,7 @@ def find_matches(unsupported_fp=""):
             print(top_match)
             print(str(abs(len(unsupported_fp) - len(match_dict[top_match]['fingerprint']))) + " new key/value pairs\n")
             match = True
-    if match:
+    if match and accept_matches:
         return
     
     for idx, top_match in enumerate(top_matches):
@@ -66,19 +66,19 @@ def find_matches(unsupported_fp=""):
             print(str(idx + 1) + ". " + top_match)
         else:
             print(str(idx + 1) + ". " + top_match[:-2] + " (fingerprint #" + str(int(top_match[-1:]) + 1) + ")")
-        print("  " + str(match_sorted[top_match]['matches']) + " exact key/value matches")
+        print("   " + str(match_sorted[top_match]['matches']) + " exact key/value matches")
         if match_dict[top_match]['mismatches'] != 0:
             tmp_mismatches="{"
-            print("  " + str(match_dict[top_match]['mismatches']) + " mismatches")
+            print("   " + str(match_dict[top_match]['mismatches']) + " mismatches")
             for i in unsupported_fp:
                 if i in match_dict[top_match]['fingerprint']:
                     if unsupported_fp[i] != match_dict[top_match]['fingerprint'][i]:
-                        tmp_mismatches+=(str(i)+": Unsupported: "+ str(unsupported_fp[i])+", this: "+str(match_dict[top_match]['fingerprint'][i])+"; ")
+                        tmp_mismatches+=(str(i)+": Unsupported (yours): "+ str(unsupported_fp[i])+", model: "+str(match_dict[top_match]['fingerprint'][i])+"; ")
             tmp_mismatches = tmp_mismatches[:-2]
             tmp_mismatches+="}"
-            print("  Mismatches: "+str(tmp_mismatches))
+            print("   Mismatches: "+str(tmp_mismatches))
         else:
-            print("  No mismatches")
+            print("   No mismatches")
         if abs(len(unsupported_fp) - len(match_dict[top_match]['fingerprint'])) != 0:
             new_keys = 0
             for key in unsupported_fp:
@@ -89,9 +89,9 @@ def find_matches(unsupported_fp=""):
                 if key not in unsupported_fp:
                     less_keys += 1
             if new_keys > 0:
-                print("  %s new key/value pairs" % new_keys)
+                print("   %s new key/value pairs (your fingerprint)" % new_keys)
             if less_keys > 0:
-                print("  %s less key/value pairs" % less_keys)
+                print("   %s less key/value pairs (your fingerprint)" % less_keys)
             
             '''if len(unsupported_fp) > len(match_dict[top_match]['fingerprint']):
                 print(str(abs(len(unsupported_fp) - len(match_dict[top_match]['fingerprint']))) + " new key/value pairs")
