@@ -9,9 +9,10 @@ def find_matches(unsupported_fp=""):
         unsupported_fp = input("Enter fingerprint: ")
     if type(unsupported_fp) == str:  # formatting for from sentry
         try:
-            unsupported_fp = unsupported_fp.replace("L:", ":")
+            unsupported_fp = unsupported_fp.replace("L:", ":").replace(';', ':')
             unsupported_fp = ast.literal_eval(unsupported_fp)
         except:
+            print("Malformed dict string!")
             return
             
     match_dict = {}
